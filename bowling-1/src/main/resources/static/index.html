@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Bowling Game</h1>
+	<table border="1" class="table">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th colspan="2">1</th>
+				<th colspan="2">2</th>
+				<th colspan="2">3</th>
+				<th colspan="2">4</th>
+				<th colspan="2">5</th>
+				<th colspan="2">6</th>
+				<th colspan="2">7</th>
+				<th colspan="2">8</th>
+				<th colspan="2">9</th>
+				<th colspan="3">10</th>
+				<th>점수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2"><span id="playerName">&nbsp;</span></td>
+				<td><span id="frame1_1">&nbsp;</span></td>
+				<td><span id="frame1_2">&nbsp;</span></td>
+				<td><span id="frame2_1">&nbsp;</span></td>
+				<td><span id="frame2_2">&nbsp;</span></td>
+				<td><span id="frame3_1">&nbsp;</span></td>
+				<td><span id="frame3_2">&nbsp;</span></td>
+				<td><span id="frame4_1">&nbsp;</span></td>
+				<td><span id="frame4_2">&nbsp;</span></td>
+				<td><span id="frame5_1">&nbsp;</span></td>
+				<td><span id="frame5_2">&nbsp;</span></td>
+				<td><span id="frame6_1">&nbsp;</span></td>
+				<td><span id="frame6_2">&nbsp;</span></td>
+				<td><span id="frame7_1">&nbsp;</span></td>
+				<td><span id="frame7_2">&nbsp;</span></td>
+				<td><span id="frame8_1">&nbsp;</span></td>
+				<td><span id="frame8_2">&nbsp;</span></td>
+				<td><span id="frame9_1">&nbsp;</span></td>
+				<td><span id="frame9_2">&nbsp;</span></td>
+				<td><span id="frame10_1">&nbsp;</span></td>
+				<td><span id="frame10_2">&nbsp;</span></td>
+				<td><span id="frame10_3">&nbsp;</span></td>
+				<td rowspan="2"><span id="totalScore">&nbsp;</span></td>
+			</tr>
+			<tr>
+				<!-- <td>&nbsp;</td> -->
+				<td colspan="2"><span id="score1">&nbsp;</span></td>
+				<td colspan="2"><span id="score2">&nbsp;</span></td>
+				<td colspan="2"><span id="score3">&nbsp;</span></td>
+				<td colspan="2"><span id="score4">&nbsp;</span></td>
+				<td colspan="2"><span id="score5">&nbsp;</span></td>
+				<td colspan="2"><span id="score6">&nbsp;</span></td>
+				<td colspan="2"><span id="score7">&nbsp;</span></td>
+				<td colspan="2"><span id="score8">&nbsp;</span></td>
+				<td colspan="2"><span id="score9">&nbsp;</span></td>
+				<td colspan="3"><span id="score10">&nbsp;</span></td>
+				<!-- <td>&nbsp;</td> -->
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+	<div align="center">
+		<div>
+			선수 이름: <input type="text" id="playerInput">
+		</div>
+		<div>
+			<button type="button" id="addPlayer">선수입력</button>
+		</div>
+	</div>
+	<hr>
+	<div>
+		<span id="frameNum"></span> 프레임
+	</div>
+	<hr>
+	<div>
+		<div align="center">
+			<!-- 4개핀 7, 8, 9, 10번 -->
+			7<input type="checkbox" id="pin7" class="pin"> 8<input
+				type="checkbox" id="pin8" class="pin"> 9<input
+				type="checkbox" id="pin9" class="pin"> 10<input
+				type="checkbox" id="pin10" class="pin">
+		</div>
+		<div align="center">
+			4<input type="checkbox" id="pin4" class="pin"> 5<input
+				type="checkbox" id="pin5" class="pin"> 6<input
+				type="checkbox" id="pin6" class="pin">
+		</div>
+		<div align="center">
+			2<input type="checkbox" id="pin2" class="pin"> 3<input
+				type="checkbox" id="pin3" class="pin">
+		</div>
+		<div align="center">
+			1<input type="checkbox" id="pin1" class="pin">
+		</div>
+		<div>
+		<button type="button" id="play">play</button><button type="button" id="allCheck">스트라이크</button>
+		</div>
+	</div>
+</body>
+<script>
+	let frameNum = 1;
+	let ballNum = 1;
+	let first = 0;
+	let firstS = 0;
+	let second = 0;
+	let secondS = 0;
+	let third = 0;
+	let thirdS = 0;
+	let fourth = 0;
+	let fourthS = 0;
+	let fifth = 0;
+	let fifthS = 0;
+	let sixth = 0;
+	let sixthS = 0;
+	let seventh = 0;
+	let seventhS = 0;
+	let eighth = 0;
+	let eighthS = 0;
+	let ninth = 0;
+	let ninthS = 0;
+	let tenth = 0;
+	let tenthS = 0;
+	let totalScore = 0;
+	
+
+	$('#frameNum').text(frameNum);
+//play button-----------------------------
+	$('#play').click(function() {
+		console.log('play');
+		if ($('#playerInput').val() == '') {
+			alert('선수 이름을 입력하세요');
+			return;
+		}
+		let pinCnt = 0;
+		let fallPins = [];
+
+		//
+		if ($('#pin1').is(':checked')) {
+			fallPins.push($('#pin1'));
+			pinCnt += 1;
+		}
+		if ($('#pin2').is(':checked')) {
+			fallPins.push($('#pin2'));
+			pinCnt += 1;
+		}
+		if ($('#pin3').is(':checked')) {
+			fallPins.push($('#pin3'));
+			pinCnt += 1;
+		}
+		if ($('#pin4').is(':checked')) {
+			fallPins.push($('#pin4'));
+			pinCnt += 1;
+		}
+		if ($('#pin5').is(':checked')) {
+			fallPins.push($('#pin5'));
+			pinCnt += 1;
+		}
+		if ($('#pin6').is(':checked')) {
+			fallPins.push($('#pin6'));
+			pinCnt += 1;
+		}
+		if ($('#pin7').is(':checked')) {
+			fallPins.push($('#pin7'));
+			pinCnt += 1;
+		}
+		if ($('#pin8').is(':checked')) {
+			fallPins.push($('#pin8'));
+			pinCnt += 1;
+		}
+		if ($('#pin9').is(':checked')) {
+			fallPins.push($('#pin9'));
+			pinCnt += 1;
+		}
+		if ($('#pin10').is(':checked')) {
+			fallPins.push($('#pin10'));
+			pinCnt += 1;
+		}
+
+		console.log('pinCnt : ', pinCnt);
+
+		// 넘어진 핀의 수를 보드에 기록
+		//1프레임
+		if (frameNum == 1 && ballNum == 1) {
+			first = pinCnt;//첫번째공 점수
+			$('#frame1_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame1_1').text('X');
+				firstS = pinCnt;//스트라이크
+				first = pinCnt;
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+		} else if (frameNum == 1 && ballNum == 2) {
+			$('#frame1_2').text(pinCnt);
+			first += pinCnt;
+			if(first>10){
+				first=10;
+			}
+			if (first == 10) {
+				$('#frame1_2').text('/');
+				alert('스페어!!');
+			}else{
+				$('#score1').text(first);
+			}
+		}
+		//2프레임
+		else if (frameNum == 2 && ballNum == 1) {
+			second = pinCnt;
+			$('#frame2_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame2_1').text('X');
+				secondS = pinCnt;//스트라이크
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			if(first == 10){
+				if(firstS == 10){
+					first+=pinCnt;
+				}else{
+					first+=pinCnt;
+					$('#score1').text(first);
+				}
+			}
+		} else if (frameNum == 2 && ballNum == 2) {
+			$('#frame2_2').text(pinCnt);
+			second += pinCnt;
+			if(second>10){
+				second=10;
+			}
+			if (second == 10) {
+				$('#frame2_2').text('/');
+				alert('스페어!!');
+			}else{
+				$('#score2').text(first+second);
+			}
+			if (firstS==10){
+				first+=pinCnt;
+				$('#score1').text(first);
+			}
+		}
+		//3프레임
+		else if (frameNum == 3 && ballNum == 1) {
+			third = pinCnt;
+			$('#frame3_1').text(pinCnt);
+			//스트라이크
+			if (pinCnt == 10) {
+				$('#frame3_1').text('X');
+				thirdS = pinCnt;
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			//첫번째플레임 스트라이크
+			if (firstS==10){
+				if(secondS==10){
+					first+=pinCnt;
+				$('#score1').text(first);
+				}
+				
+			}
+			//두번째 플레임 스트라이크/스페어
+			if(second == 10){
+				//두번째 플레임 스트라이크
+				if(secondS == 10){
+					second+=pinCnt;
+				//두번째 플레임 스페어
+				}else{
+					second+=pinCnt;
+					$('#score2').text(first+second);
+				}
+			}
+			
+		} else if (frameNum == 3 && ballNum == 2) {//세번째플레임 스트라이크일 경우 실행안함
+			$('#frame3_2').text(pinCnt);
+			third += pinCnt;
+			if(third>10){
+				third=10;
+			}
+			//세번째 스페어
+			if (third == 10) {
+				$('#frame3_2').text('/');
+				alert('스페어!!');
+			//스페어 아닐시
+			}else{
+				$('#score3').text(first+second+third);
+			}
+			//두번째 스트라이크
+			if (secondS==10){
+				second+=pinCnt;
+				$('#score2').text(first+second);
+			}
+		}
+		//4프레임
+		else if (frameNum == 4 && ballNum == 1) {
+			fourth = pinCnt;
+			$('#frame4_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame4_1').text('X');
+				fourthS = pinCnt;//스트라이크
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			//세번째 스페어/스트라이크
+			if (third == 10){
+				//스트라이크
+				if(thirdS == 10){
+					third+=pinCnt;
+				//스페어
+				}else{
+					third+=pinCnt;
+					$('#score3').text(first+second+third);
+				}
+				
+			}
+			//두번째 스트라이크
+			if (secondS==10){
+				//세번째도 스트라이크일시 실행
+				if(thirdS==10){
+					second+=pinCnt;
+					$('#score2').text(first+second);
+				}
+				
+			}
+			
+		// 4번째 스트라이크일시 실행안함
+		// 실행할시 세번째 스트라이크에 점수합산
+		} else if (frameNum == 4 && ballNum == 2) {
+			$('#frame4_2').text(pinCnt);
+			fourth += pinCnt;
+			if(fourth>10){
+				fourth=10;
+			}
+			//세번째 스트라이크 점수확정
+			if (thirdS==10){
+				third+=pinCnt;
+				$('#score3').text(first+second+third);
+			}
+			//4번째 스페어
+			if (fourth == 10) {
+				$('#frame4_2').text('/');
+				alert('스페어!!');
+			//스페어 못할시 점수확정
+			}else{
+				$('#score4').text(first+second+third+fourth);
+			}
+		}
+		
+		
+		//5프레임
+		else if (frameNum == 5 && ballNum == 1) {
+			fifth = pinCnt;
+			$('#frame5_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame5_1').text('X');
+				fifthS = pinCnt;
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			//세번째 스트라이크
+			if (thirdS==10){
+			//네번째도 스트라이크일시 점수합산
+				if(fourthS==10){
+					third+=pinCnt;
+					$('#score3').text(first+second+third);
+				}	
+			}
+			//네번째 스페어/스트라이크
+			if (fourth == 10){
+				if(fourthS==10){
+					fourth+=pinCnt;
+				}else{
+					fourth+=pinCnt;
+					$('#score4').text(first+second+third+fourth);
+				}
+				
+				
+			}
+			
+			
+		} else if (frameNum == 5 && ballNum == 2) {
+			$('#frame5_2').text(pinCnt);
+			fifth += pinCnt;
+			if(fifth>10){
+				fifth=10;
+			}
+			if (fifth == 10) {
+				$('#frame5_2').text('/');
+				alert('스페어!!');
+			}else{
+				$('#score5').text(first+second+third+fourth+fifth);
+			}
+			if (fourthS==10){
+				fourth+=pinCnt;
+				$('#score4').text(first+second+third+fourth);
+			}
+		}
+		
+		
+		//6프레임
+		else if (frameNum == 6 && ballNum == 1) {
+			sixth = pinCnt;
+			$('#frame6_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame6_1').text('X');
+				sixthS = pinCnt;//스트라이크
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			//네번째 스트라이크
+			if (fourthS==10){
+				//다섯번째도 스트라이크일시 점수합산
+					if(fifthS==10){
+						fourth+=pinCnt;
+						$('#score4').text(first+second+third+fourth);
+					}	
+				}
+			//다섯번째 스페어/스트라이크
+			if (fifth == 10){
+				if(fifthS==10){
+					fifth+=pinCnt;
+				}else{
+					fifth+=pinCnt;
+					$('#score5').text(first+second+third+fourth+fifth);
+				}
+			}
+			
+			
+		} else if (frameNum == 6 && ballNum == 2) {
+			$('#frame6_2').text(pinCnt);
+			sixth += pinCnt;
+			if(sixth>10){
+				sixth=10;
+			}
+			if (sixth == 10) {
+				$('#frame6_2').text('/');
+				alert('스페어!!');
+			}else{
+				$('#score6').text(first+second+third+fourth+fifth+sixth);
+			}
+			if (fifthS==10){
+				fifth+=pinCnt;
+				$('#score5').text(first+second+third+fourth+fifth);
+			}
+		}
+		
+		
+		//7프레임
+		else if (frameNum == 7 && ballNum == 1) {
+			seventh = pinCnt;
+			$('#frame7_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame7_1').text('X');
+				seventhS = pinCnt;//스트라이크
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			//5번째 스트라이크
+			if (fifthS==10){
+				//6번째도 스트라이크일시 점수합산
+					if(sixthS==10){
+						fifth+=pinCnt;
+						$('#score5').text(first+second+third+fourth+fifth);
+					}	
+				}
+			//6번째 스페어/스트라이크
+			if (sixth == 10){
+				if(sixthS==10){
+					sixth+=pinCnt;
+				}else{
+					sixth+=pinCnt;
+					$('#score6').text(first+second+third+fourth+fifth+sixth);
+				}
+			}
+			
+			
+		} else if (frameNum == 7 && ballNum == 2) {
+			$('#frame7_2').text(pinCnt);
+			seventh += pinCnt;
+			if(seventh>10){
+				seventh=10;
+			}
+			if (seventh == 10) {
+				$('#frame7_2').text('/');
+				alert('스페어!!');
+			}else{
+				$('#score7').text(first+second+third+fourth+fifth+sixth+seventh);
+			}
+			if (sixthS==10){
+				sixth+=pinCnt;
+				$('#score6').text(first+second+third+fourth+fifth+sixth);
+			}
+		}
+		
+		
+		//8프레임
+		else if (frameNum == 8 && ballNum == 1) {
+			eighth = pinCnt;
+			$('#frame8_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame8_1').text('X');
+				eighthS = pinCnt;//스트라이크
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			//6번째 스트라이크
+			if (sixthS==10){
+				//7번째도 스트라이크일시 점수합산
+					if(seventhS==10){
+						sixth+=pinCnt;
+						$('#score6').text(first+second+third+fourth+fifth+sixth);
+					}	
+				}
+			//7번째 스페어/스트라이크
+			if (seventh == 10){
+				if(seventhS==10){
+					seventh+=pinCnt;
+				}else{
+					seventh+=pinCnt;
+					$('#score7').text(first+second+third+fourth+fifth+sixth+seventh);
+				}
+			}
+			
+			
+		} else if (frameNum == 8 && ballNum == 2) {
+			$('#frame8_2').text(pinCnt);
+			eighth += pinCnt;
+			if(eighth>10){
+				eighth=10;
+			}
+			if (eighth == 10) {
+				$('#frame8_2').text('/');
+				alert('스페어!!');
+			}else{
+				$('#score8').text(first+second+third+fourth+fifth+sixth+seventh+eighth);
+			}
+			if (seventhS==10){
+				seventh+=pinCnt;
+				$('#score7').text(first+second+third+fourth+fifth+sixth+seventh);
+			}
+		}
+		
+		
+		//9프레임
+		else if (frameNum == 9 && ballNum == 1) {
+			ninth = pinCnt;
+			$('#frame9_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame9_1').text('X');
+				ninthS = pinCnt;//스트라이크
+				ballNum += 1;
+				alert('스트라이크!!');
+			}
+			//7번째 스트라이크
+			if (seventhS==10){
+				//8번째도 스트라이크일시 점수합산
+					if(eighthS==10){
+						seventh+=pinCnt;
+						$('#score7').text(first+second+third+fourth+fifth+sixth+seventh);
+					}	
+				}
+			//8번째 스페어/스트라이크
+			if (eighth == 10){
+				if(eighthS==10){
+					eighth+=pinCnt;
+				}else{
+					eighth+=pinCnt;
+					$('#score8').text(first+second+third+fourth+fifth+sixth+seventh+eighth);
+				}
+			}
+			
+			
+		} else if (frameNum == 9 && ballNum == 2) {
+			$('#frame9_2').text(pinCnt);
+			ninth += pinCnt;
+			if(ninth>10){
+				ninth=10;
+			}
+			if (ninth == 10) {
+				$('#frame9_2').text('/');
+				alert('스페어!!');
+			}else{
+				$('#score9').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth);
+			}
+			if (eighthS==10){
+				eighth+=pinCnt;
+				$('#score8').text(first+second+third+fourth+fifth+sixth+seventh+eighth);
+			}
+		}
+		
+		
+		//10프레임
+		else if (frameNum == 10 && ballNum == 1) {
+			tenth += pinCnt;
+			$('#frame10_1').text(pinCnt);
+			if (pinCnt == 10) {
+				$('#frame10_1').text('X');
+				tenthS = pinCnt;//스트라이크
+				alert('스트라이크!!');
+			}
+			//8번째 스트라이크
+			if (eighthS==10){
+				//9번째도 스트라이크일시 점수합산
+					if(ninthS==10){
+						eighth+=pinCnt;
+						$('#score8').text(first+second+third+fourth+fifth+sixth+seventh+eighth);
+					}	
+				}
+			if (ninth == 10){
+				if(ninthS==10){
+					ninth+=pinCnt;
+				}else{
+					ninth+=pinCnt;
+					$('#score9').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth);
+				}
+			}
+			
+			
+		} else if (frameNum == 10 && ballNum == 2) {
+			if(tenth<10&&pinCnt==10){
+				pinCnt=10-tenth;
+			}
+			$('#frame10_2').text(pinCnt);
+			
+			tenth += pinCnt;
+			tenthS += pinCnt;
+			if (tenth == 10) {
+				$('#frame10_2').text('/');
+				alert('스페어!!');
+			}
+			if (pinCnt == 10) {
+				$('#frame10_2').text('X');
+				alert('스트라이크!!');
+			}
+			if (tenth < 10){
+				$('#score10').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
+				totalScore=first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth;
+				
+			}
+			if (ninthS==10){
+				ninth+=pinCnt;
+				$('#score9').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth);
+			}
+			
+		} else if (frameNum == 10 && ballNum == 3) {
+			$('#frame10_3').text(pinCnt);
+			tenth += pinCnt;
+			if (pinCnt == 10) {
+				$('#frame10_3').text('X');
+				alert('스트라이크!!');
+			}
+			$('#score10').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
+			totalScore=first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth;
+			
+		}
+
+		// pin checked 해제
+			$('.pin').each(function(index, item) {
+				item.checked = false;
+			});
+		
+		
+		// 넘어진 핀을 비활성화
+		$(fallPins).each(function(index, item) {
+			console.log(item);
+			$(item).attr('disabled', true);
+		});
+		if(frameNum == 10){
+			if (ballNum == 1) {
+				ballNum = 2
+				if(tenth>9){
+					$('#frameNum').text(frameNum);
+					$('.pin').each(function(index, item) {
+						$(item).attr('disabled', false);
+					});
+				}		
+			} else if(ballNum == 2){
+				if(tenth>9){
+					ballNum = 3
+					$('#frameNum').text(frameNum);
+					$('.pin').each(function(index, item) {
+						$(item).attr('disabled', false);
+					});
+				}else{
+					$('#totalScore').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
+					totalScore=first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth;
+					alert('게임끝');
+					
+				}
+			}else if(ballNum ==3){
+				$('#totalScore').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
+				alert('게임끝');
+				
+			}
+		}else{
+			if (ballNum == 1) {
+				ballNum = 2;
+			} else if (ballNum == 2) {
+				ballNum = 1;
+				frameNum += 1;
+				$('#frameNum').text(frameNum);
+				$('.pin').each(function(index, item) {
+					$(item).attr('disabled', false);
+				});
+			}
+		}
+		
+	});
+
+	$('#addPlayer').click(function() {
+		console.log("addPlayer btn click");
+		if ($('#playerInput').val() == '') {
+			alert('선수 이름을 입력하세요');
+			return;
+		} else {
+			//console.log($('#playerInput').val());
+			$('#playerName').text($('#playerInput').val());
+		}
+	});
+	$('#allCheck').click(function(){
+		console.log("allCheck btn click");
+		$('.pin').each(function(index, item){
+            
+			item.checked = true;
+        });
+	});
+</script>
+
+</html>
+
+
