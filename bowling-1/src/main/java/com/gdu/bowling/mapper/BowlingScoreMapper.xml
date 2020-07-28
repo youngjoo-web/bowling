@@ -4,14 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.gdu.bowling.mapper.BowlingScoreMapper">
   <insert id="insertBowling" parameterType="com.gdu.bowling.vo.BowlingScore">
-        INSERT INTO bowling_score(
-           	player_name,
-            player_score,
-            player_date
+        INSERT INTO bowling(
+           	user_name,
+            score,
+            last_update
         ) VALUES
-            #{playerName},
-            #{playerScore},
+            #{userName},
+            #{score},
             now()
         )
     </insert>
+    
+   	<select id="selectBowlingScoreList" resultType="com.gdu.bowling.vo.BowlingScore">
+   		SELECT
+   			user_name as userName,
+   			score as score,
+   			last_update as lastUpdate
+   		FROM bowling
+   		ORDER BY score DESC, last_update DESC
+   	</select>
 </mapper>  

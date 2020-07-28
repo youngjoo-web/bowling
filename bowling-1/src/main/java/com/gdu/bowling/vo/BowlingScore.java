@@ -1,38 +1,30 @@
 package com.gdu.bowling.vo;
 
 public class BowlingScore {
-	private int playerNo;
-	private String playerName;
-	private int playerScore;
-	private String playerDate;
-	public int getPlayerNo() {
-		return playerNo;
+	private String userName;
+	private int score;
+	private String lastUpdate;
+	public String getUserName() {
+		return userName;
 	}
-	public void setPlayerNo(int playerNo) {
-		this.playerNo = playerNo;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getPlayerName() {
-		return playerName;
+	public int getScore() {
+		return score;
 	}
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	public void setScore(int score) {
+		this.score = score;
 	}
-	public int getPlayerScore() {
-		return playerScore;
+	public String getLastUpdate() {
+		return lastUpdate;
 	}
-	public void setPlayerScore(int playerScore) {
-		this.playerScore = playerScore;
-	}
-	public String getPlayerDate() {
-		return playerDate;
-	}
-	public void setPlayerDate(String playerDate) {
-		this.playerDate = playerDate;
+	public void setLastUpdate(String lastUpdate) {
+		this.lastUpdate = lastUpdate;
 	}
 	@Override
 	public String toString() {
-		return "BowlingScore [playerNo=" + playerNo + ", playerName=" + playerName + ", playerScore=" + playerScore
-				+ ", playerDate=" + playerDate + "]";
+		return "BowlingScore [userName=" + userName + ", score=" + score + ", lastUpdate=" + lastUpdate + "]";
 	}
 	
 	

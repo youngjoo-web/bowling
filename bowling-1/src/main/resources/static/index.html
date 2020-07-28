@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -114,8 +114,30 @@
 		<div align="center">
 			1<input type="checkbox" id="pin1" class="pin">
 		</div>
-		<div>
+		<div align="center">
 		<button type="button" id="play">play</button><button type="button" id="allCheck">스트라이크</button>
+		</div>
+		<div align="center">
+			<table class="table" width="100%"
+									cellspacing="0">
+									<thead>
+										<tr>
+											<th>이름</th>
+											<th>점수</th>
+											<th>날짜</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="list :${list}">
+											<td th:text="${list.userName}"></td>
+											<td th:text="${list.score}"></td>
+											<td th:text="${list.lastUpdate}"></td>
+										</tr>
+										
+
+									</tbody>
+								</table>
 		</div>
 	</div>
 </body>
