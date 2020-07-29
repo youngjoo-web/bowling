@@ -656,8 +656,6 @@
 					$('#score9').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth);
 				}
 			}
-			
-			
 		} else if (frameNum == 10 && ballNum == 2) {
 			if(tenth<10&&pinCnt==10){
 				pinCnt=10-tenth;
@@ -677,13 +675,11 @@
 			if (tenth < 10){
 				$('#score10').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
 				totalScore=first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth;
-				
 			}
 			if (ninthS==10){
 				ninth+=pinCnt;
 				$('#score9').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth);
 			}
-			
 		} else if (frameNum == 10 && ballNum == 3) {
 			$('#frame10_3').text(pinCnt);
 			tenth += pinCnt;
@@ -693,15 +689,11 @@
 			}
 			$('#score10').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
 			totalScore=first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth;
-			
 		}
-
 		// pin checked 해제
 			$('.pin').each(function(index, item) {
 				item.checked = false;
 			});
-		
-		
 		// 넘어진 핀을 비활성화
 		$(fallPins).each(function(index, item) {
 			console.log(item);
@@ -719,7 +711,7 @@
 			} else if(ballNum == 2){
 				if(tenth>9){
 					ballNum = 3
-					$('#frameNum').text(frameNum);
+					
 					$('.pin').each(function(index, item) {
 						$(item).attr('disabled', false);
 					});
@@ -727,12 +719,73 @@
 					$('#totalScore').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
 					totalScore=first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth;
 					alert('게임끝');
+					frameNum = 1;
+					//점수판초기화
+					$('#frameNum').text(frameNum);
+					$('#frame1_1').text("");
+					$('#frame1_2').text("");
+					$('#frame2_1').text("");
+					$('#frame2_2').text("");
+					$('#frame3_1').text("");
+					$('#frame3_2').text("");
+					$('#frame4_1').text("");
+					$('#frame4_2').text("");
+					$('#frame5_1').text("");
+					$('#frame5_2').text("");
+					$('#frame6_1').text("");
+					$('#frame6_2').text("");
+					$('#frame7_1').text("");
+					$('#frame7_2').text("");
+					$('#frame8_1').text("");
+					$('#frame8_2').text("");
+					$('#frame9_1').text("");
+					$('#frame9_2').text("");
 					
+					$('#score1').text("");
+					$('#score2').text("");
+					$('#score3').text("");
+					$('#score4').text("");
+					$('#score5').text("");
+					$('#score6').text("");
+					$('#score7').text("");
+					$('#score8').text("");
+					$('#score9').text("");
+					ballNum = 1;
 				}
 			}else if(ballNum ==3){
 				$('#totalScore').text(first+second+third+fourth+fifth+sixth+seventh+eighth+ninth+tenth);
 				alert('게임끝');
+				frameNum = 1;
+				$('#frameNum').text(frameNum);
+				$('#frame1_1').text("");
+				$('#frame1_2').text("");
+				$('#frame2_1').text("");
+				$('#frame2_2').text("");
+				$('#frame3_1').text("");
+				$('#frame3_2').text("");
+				$('#frame4_1').text("");
+				$('#frame4_2').text("");
+				$('#frame5_1').text("");
+				$('#frame5_2').text("");
+				$('#frame6_1').text("");
+				$('#frame6_2').text("");
+				$('#frame7_1').text("");
+				$('#frame7_2').text("");
+				$('#frame8_1').text("");
+				$('#frame8_2').text("");
+				$('#frame9_1').text("");
+				$('#frame9_2').text("");
 				
+				$('#score1').text("");
+				$('#score2').text("");
+				$('#score3').text("");
+				$('#score4').text("");
+				$('#score5').text("");
+				$('#score6').text("");
+				$('#score7').text("");
+				$('#score8').text("");
+				$('#score9').text("");
+				ballNum = 1;
 			}
 		}else{
 			if (ballNum == 1) {
@@ -746,9 +799,7 @@
 				});
 			}
 		}
-		
 	});
-
 	$('#addPlayer').click(function() {
 		console.log("addPlayer btn click");
 		if ($('#playerInput').val() == '') {
@@ -762,7 +813,6 @@
 	$('#allCheck').click(function(){
 		console.log("allCheck btn click");
 		$('.pin').each(function(index, item){
-            
 			item.checked = true;
         });
 	});
