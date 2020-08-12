@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.gdu.bowling.mapper.BowlingScoreMapper">
+  <insert id="insertBowling" parameterType="com.gdu.bowling.vo.BowlingScore">
+        INSERT INTO bowling_score(
+           	user_name,
+            score,
+            last_update
+        ) VALUES
+            #{userName},
+            #{score},
+            now()
+        )
+    </insert>
+    
+   	<select id="selectBowlingScoreList" resultType="com.gdu.bowling.vo.BowlingScore">
+   		SELECT
+   			user_name as userName,
+   			score as score,
+   			last_update as lastUpdate
+   		FROM bowling_score
+   		ORDER BY score DESC, last_update DESC
+   	</select>
+</mapper>  
