@@ -19,8 +19,7 @@ public class BowlingScoreController {
 	
 	@GetMapping({"/", "/index"})
 	public String index(Model model) {
-		List<BowlingScore>list = bowlingScoreMapper.selectBowlingScoreList();
-		model.addAttribute("list",list);
+		
 		return "index/index";
 	}
 	

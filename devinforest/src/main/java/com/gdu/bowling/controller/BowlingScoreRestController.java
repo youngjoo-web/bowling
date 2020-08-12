@@ -17,16 +17,6 @@ import com.gdu.bowling.vo.BowlingScore;
 
 @RestController
 public class BowlingScoreRestController {
-	@Autowired private BowlingScoreMapper bowlingScoreMapper;
-	// 아이디 중복체크
-	@PostMapping("/addBowlingScore")
-	public List<BowlingScore> addBowlingScore(BowlingScore bowling, Model model) {
-		// 로그인 세션확인
-		bowlingScoreMapper.insertBowling(bowling);
-		
-		
-		List<BowlingScore>list = bowlingScoreMapper.selectBowlingScoreList();
-		return list;
-	}
+	
 	
 }
